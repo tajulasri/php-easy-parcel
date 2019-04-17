@@ -5,7 +5,7 @@ https://developers.easyparcel.com/?pg=DocAPI
 
 ## installation 
 
-## Easy parcel method 
+## Available methods
 
 ### 1. Checking rate 
 
@@ -40,5 +40,14 @@ $client = ClientFactory::make($apiKey)
 
 var_dump($client->dispatch());
 var_dump($client->getTaskHandler()->getEndpoint());
+
+```
+
+
+## Command for testing
+
+```php
+
+    ./vendor/bin/phpunit
 
 ```
