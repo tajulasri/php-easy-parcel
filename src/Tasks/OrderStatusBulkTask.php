@@ -10,7 +10,7 @@ class OrderStatusBulkTask extends Request implements TaskContract
 {
 
     /**
-     * @return int
+     * @return Psr\Http\Message\ResponseInterface
      */
     public function request(array $data): ResponseInterface
     {
@@ -21,7 +21,7 @@ class OrderStatusBulkTask extends Request implements TaskContract
         );
     }
 
-    public function getTask()
+    public function getTask(): string
     {
         return 'EPOrderStatusBulk';
     }
