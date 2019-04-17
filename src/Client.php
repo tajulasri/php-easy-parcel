@@ -8,20 +8,17 @@ class Client
 {
 
     /**
-     * default action
+     * Default action fallback
      * @var string
      */
     protected $action = 'EPCheckCreditBalance';
 
     /**
+     * Task handlers
      * @var array
      */
     protected $tasks = [];
 
-    /**
-     * @var array
-     */
-    protected $data = [];
     /**
      * @param string $apikey
      */
@@ -40,19 +37,9 @@ class Client
     }
 
     /**
-     * @param  array   $data
-     * @return mixed
-     */
-    public function data(array $data = []) : self
-    {
-        $this->data = $data;
-        return $this;
-    }
-
-    /**
      * @param $action
      */
-    public function action($action): self
+    public function action($action) : self
     {
         $this->action = $action;
         return $this;
@@ -81,14 +68,6 @@ class Client
     public function getAction()
     {
         return $this->action;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 
     /**
