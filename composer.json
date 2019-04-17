@@ -17,6 +17,13 @@
         "psr-4": {
             "EasyParcel\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EasyParcel\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
     }
-    
 }

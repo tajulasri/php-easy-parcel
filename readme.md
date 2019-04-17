@@ -3,9 +3,7 @@
 Documentation: 
 https://developers.easyparcel.com/?pg=DocAPI
 
-
 ## installation 
-
 
 ## Easy parcel method 
 
