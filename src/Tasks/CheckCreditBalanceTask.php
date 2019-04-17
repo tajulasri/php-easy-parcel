@@ -14,7 +14,6 @@ class CheckCreditBalanceTask extends Request implements TaskContract
      */
     public function request(array $data): ResponseInterface
     {
-
         return $this->client->request(
             'POST', $this->getEndpoint(), [
                 'form_params' => $data,

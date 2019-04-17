@@ -12,12 +12,12 @@ https://developers.easyparcel.com/?pg=DocAPI
 ```php
 require_once __DIR__.'/vendor/autoload.php';
 
-use EasyParcel\Client;
+use EasyParcel\ClientFactory;
 use GuzzleHttp\Client as HttpClient;
 
 $apiKey = 'sample_api_key';
 
-$client = Client::make($apiKey)
+$client = ClientFactory::make($apiKey)
     ->action('EPRateCheckingBulk')
     ->useSandbox()
     ->setup([

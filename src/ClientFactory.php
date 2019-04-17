@@ -4,7 +4,7 @@ namespace EasyParcel;
 use Exception;
 use GuzzleHttp\Client as HttpClient;
 
-class Client
+class ClientFactory
 {
 
     /**
