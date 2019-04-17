@@ -18,7 +18,7 @@ use GuzzleHttp\Client as HttpClient;
 $apiKey = 'sample_api_key';
 
 $client = ClientFactory::make($apiKey)
-    ->action('EPRateCheckingBulk')
+    ->action(Action::RATE_CHECKING_BULK)
     ->useSandbox()
     ->setup([
         'bulk' => [
@@ -44,10 +44,28 @@ var_dump($client->getTaskHandler()->getEndpoint());
 ```
 
 
-## Command for testing
+### 2. Checking credit balance
 
 ```php
+require_once __DIR__.'/vendor/autoload.php';
 
-    ./vendor/bin/phpunit
+use EasyParcel\ClientFactory;
+use GuzzleHttp\Client as HttpClient;
 
+$apiKey = 'sample_api_key';
+
+$client = ClientFactory::make($apiKey)
+    ->action(Action::CREDIT_BALANCE_CHECKING)
+    ->useSandbox()
+    ->setup();
+
+var_dump($client->dispatch());
+var_dump($client->getTaskHandler()->getEndpoint());
+
+```
+
+
+## Command for testing
+```php
+./vendor/bin/phpunit
 ```
