@@ -41,7 +41,7 @@ abstract class Request
     public function stageMarking($value) : self
     {
         $this->useSandbox = $value;
-        $this->endpoint = $value ? 'http://demo.connect.easyparcel.my/' : $this->endpoint;
+        $this->endpoint = $value ? 'http://demo.connect.easyparcel.my' : $this->endpoint;
         return $this;
     }
 

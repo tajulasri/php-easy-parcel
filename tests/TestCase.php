@@ -19,5 +19,6 @@ class TestCase extends PHPUnit
      */
     protected function tearDown(): void
     {
+        parent::__construct();
     }
 }

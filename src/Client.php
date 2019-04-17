@@ -40,7 +40,7 @@ class Client
     public function __construct( ? string $apikey)
     {
         $this->apikey = $apikey;
-        $this->tasks = require_once __DIR__.'/tasks.php';
+        $this->tasks = require __DIR__.'/tasks.php';
     }
 
     /**
@@ -75,12 +75,13 @@ class Client
     public function setup(array $data = [])
     {
         $this->data['api'] = $this->getApiKey();
+        $tasks = $this->getTasks();
 
-        if (!array_key_exists($this->getAction(), $this->tasks)) {
+        if (!array_key_exists($this->getAction(), $tasks)) {
             throw new Exception("No task handler found for current request action {$this->getAction()}", 1);
         }
 
-        $this->taskHandler = (new $this->tasks[$this->getAction()](
+        $this->taskHandler = (new $tasks[$this->getAction()](
             $this->getApiKey(), new HttpClient)
         )
             ->stageMarking($this->demo);
@@ -93,7 +94,15 @@ class Client
      */
     public function dispatch()
     {
-        return $this->taskHandler->request($this->data);
+        return $this->getTaskHandler()->request($this->data);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTasks(): array
+    {
+        return $this->tasks;
     }
 
     /**
