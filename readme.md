@@ -1,5 +1,7 @@
 ## Easy parcel PHP Package
 
+[![Build Status](https://travis-ci.org/tajulasri/php-easy-parcel.svg?branch=master)](https://travis-ci.org/tajulasri/php-easy-parcel)
+
 Documentation: 
 https://developers.easyparcel.com/?pg=DocAPI
 
