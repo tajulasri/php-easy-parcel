@@ -9,7 +9,7 @@ abstract class Request
     /**
      * @var string
      */
-    protected $endpoint = 'https://demo.connect.easyparcel.my';
+    protected $endpoint = 'http://connect.easyparcel.my';
 
     /**
      * @var mixed
@@ -22,6 +22,11 @@ abstract class Request
     protected $apikey;
 
     /**
+     * @var mixed
+     */
+    protected $useSandbox = false;
+
+    /**
      * @param string $apikey
      */
     public function __construct( ? string $apikey, ClientInterface $client)
@@ -31,11 +36,13 @@ abstract class Request
     }
 
     /**
-     * @return mixed
+     * @param $value
      */
-    public function useProduction() : self
+    public function stageMarking($value) : self
     {
-        return $this->setEndpoint('using production dude');
+        $this->useSandbox = $value;
+        $this->endpoint = $value ? 'http://demo.connect.easyparcel.my/' : $this->endpoint;
+        return $this;
     }
 
     /**
@@ -44,7 +51,7 @@ abstract class Request
      */
     public function setEndpoint(string $endpoint): self
     {
-        return $this->endpoint = $endpoint;
+        $this->endpoint = $endpoint;
     }
 
     /**

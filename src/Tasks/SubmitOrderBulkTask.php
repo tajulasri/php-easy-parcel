@@ -21,7 +21,7 @@ class SubmitOrderBulkTask extends Request implements TaskContract
         );
     }
 
-    protected function getTask()
+    public function getTask()
     {
         return 'EPSubmitOrderBulk';
     }

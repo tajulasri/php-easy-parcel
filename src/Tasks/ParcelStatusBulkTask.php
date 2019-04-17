@@ -21,7 +21,7 @@ class ParcelStatusBulkTask extends Request implements TaskContract
         );
     }
 
-    protected function getTask()
+    public function getTask()
     {
         return 'EPParcelStatusBulk';
     }

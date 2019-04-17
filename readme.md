@@ -7,7 +7,7 @@ https://developers.easyparcel.com/?pg=DocAPI
 
 ## Easy parcel method 
 
-### 1. Checking credit balance
+### 1. Checking rate 
 
 ```php
 require_once __DIR__.'/vendor/autoload.php';
@@ -15,16 +15,30 @@ require_once __DIR__.'/vendor/autoload.php';
 use EasyParcel\Client;
 use GuzzleHttp\Client as HttpClient;
 
-$apiKey = 'your api key';
+$apiKey = 'sample_api_key';
 
 $client = Client::make($apiKey)
-    ->action('EPCheckCreditBalance')
-    //since there is not payload supplied for checking credit
-    ->dispatch([])
-    //this response will return ResponseInterface::class guzzle 
-    ->getBody()
-    ->getContents();
+    ->action('EPRateCheckingBulk')
+    ->useSandbox()
+    ->setup([
+        'bulk' => [
+            [
+                'pick_code' => '10050',
+                'pick_state' => 'png',
+                'pick_country' => 'MY',
+                'send_code' => '11950',
+                'send_state' => 'png',
+                'send_country' => 'MY',
+                'weight' => '5',
+                'width' => '0',
+                'length' => '0',
+                'height' => '0',
+                'date_coll' => '2017-11-08',
+            ],
+        ],
+    ]);
 
-var_dump($client);
+var_dump($client->dispatch());
+var_dump($client->getTaskHandler()->getEndpoint());
 
 ```

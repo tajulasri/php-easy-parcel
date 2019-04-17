@@ -20,6 +20,21 @@ class Client
     protected $tasks = [];
 
     /**
+     * @var mixed
+     */
+    protected $demo = false;
+
+    /**
+     * @var mixed
+     */
+    protected $taskHandler;
+
+    /**
+     * @var array
+     */
+    protected $data = [];
+
+    /**
      * @param string $apikey
      */
     public function __construct( ? string $apikey)
@@ -37,6 +52,15 @@ class Client
     }
 
     /**
+     * @return mixed
+     */
+    public function useSandbox()
+    {
+        $this->demo = true;
+        return $this;
+    }
+
+    /**
      * @param $action
      */
     public function action($action) : self
@@ -48,18 +72,36 @@ class Client
     /**
      * @return mixed
      */
-    public function dispatch(array $data = [])
+    public function setup(array $data = [])
     {
-        $data['api'] = $this->getApiKey();
+        $this->data['api'] = $this->getApiKey();
 
         if (!array_key_exists($this->getAction(), $this->tasks)) {
             throw new Exception("No task handler found for current request action {$this->getAction()}", 1);
         }
 
-        return (new $this->tasks[$this->getAction()](
+        $this->taskHandler = (new $this->tasks[$this->getAction()](
             $this->getApiKey(), new HttpClient)
         )
-            ->request($data);
+            ->stageMarking($this->demo);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function dispatch()
+    {
+        return $this->taskHandler->request($this->data);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaskHandler()
+    {
+        return $this->taskHandler;
     }
 
     /**

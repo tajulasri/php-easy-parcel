@@ -4,11 +4,12 @@ require_once __DIR__.'/vendor/autoload.php';
 use EasyParcel\Client;
 use GuzzleHttp\Client as HttpClient;
 
-$apiKey = '';
+$apiKey = 'sample_api_key';
 
 $client = Client::make($apiKey)
     ->action('EPRateCheckingBulk')
-    ->dispatch([
+    ->useSandbox()
+    ->setup([
         'bulk' => [
             [
                 'pick_code' => '10050',
@@ -24,8 +25,7 @@ $client = Client::make($apiKey)
                 'date_coll' => '2017-11-08',
             ],
         ],
-    ])
-    ->getBody()
-    ->getContents();
+    ]);
 
-var_dump($client);
+var_dump($client->dispatch());
+var_dump($client->getTaskHandler()->getEndpoint());

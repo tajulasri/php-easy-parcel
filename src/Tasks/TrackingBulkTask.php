@@ -21,7 +21,7 @@ class TrackingBulkTask extends Request implements TaskContract
         );
     }
 
-    protected function getTask()
+    public function getTask()
     {
         return 'EPTrackingBulk';
     }

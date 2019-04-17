@@ -21,7 +21,7 @@ class OrderStatusBulkTask extends Request implements TaskContract
         );
     }
 
-    protected function getTask()
+    public function getTask()
     {
         return 'EPOrderStatusBulk';
     }
