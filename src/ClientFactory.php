@@ -75,13 +75,15 @@ class ClientFactory
     public function setup(array $data = [])
     {
         $this->data['api'] = $this->getApiKey();
+
+        $this->data = array_merge($data);
         $tasks = $this->getTasks();
 
         if (!array_key_exists($this->getAction(), $tasks)) {
             throw new Exception("No task handler found for current request action {$this->getAction()}", 1);
         }
 
-        $this->taskHandler = (new $tasks[$this->getAction()](
+        $this->taskHandler = (new $tasks[$this->getAction($this->data)](
             $this->getApiKey(), new HttpClient)
         )
             ->stageMarking($this->demo);
