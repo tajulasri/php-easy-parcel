@@ -10,7 +10,7 @@ https://developers.easyparcel.com/?pg=DocAPI
 
 ### Installation
 ```php
-composer require tajulasri/php-easy-parcel
+composer require tajulasri/easy-parcel
 ```
 
 ## Available Actions
