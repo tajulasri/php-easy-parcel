@@ -76,7 +76,8 @@ class ClientFactory
     {
         $this->data['api'] = $this->getApiKey();
 
-        $this->data = array_merge($data);
+        //merge and combine our payload
+        $this->data = array_merge($this->data, $data);
         $tasks = $this->getTasks();
 
         if (!array_key_exists($this->getAction(), $tasks)) {
